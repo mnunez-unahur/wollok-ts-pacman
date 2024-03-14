@@ -1,12 +1,12 @@
-// import wollok.game.*
+import wollok.game.*
 
 import personajes.pacman
 
 program main {
 	game.title("Pacman")
-	game.height(50)
-	game.width(50)
-	game.cellSize(50)
+	game.height(62)
+	game.width(52)
+	game.cellSize(10)
 
 	game.boardGround("tablero.png")
 
@@ -17,7 +17,6 @@ program main {
 
 	game.onTick(300, "movimeinto1", { 
 		pacman.moverDerecha()
-		// pacman.moverDerecha()
 	})
 
 	
