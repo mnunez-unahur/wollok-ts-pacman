@@ -1,24 +1,5 @@
-// import wollok.game.*
-import personajes.pacman
-import elementos.tablero
-
+import juego.*
 program main {
-	game.title("Pacman")
-	game.height(35)
-	game.width(50)
-	game.cellSize(20)
-
-	game.boardGround("fondo.png")
-	game.addVisual(tablero)
-
-	game.showAttributes(pacman) 
-	game.addVisual(pacman)
-
-	game.start()
-
-	game.onTick(120, "movimeinto1", { 
-		pacman.moverDerecha()
-	})
-
+	juego.iniciar()
 	
 }
