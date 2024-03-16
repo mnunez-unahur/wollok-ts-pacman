@@ -1,18 +1,19 @@
 import wollok.game.*
+import elementos.tablero
 
 object pacman {
-  var property position = game.at(2,5)
+  var property position = new Position(x = tablero.inicioX() + 1, y = tablero.inicioY() + 1)
 
-  method image() = "pacman/derecha-1.png"
+  method image() = "pacman/derecha-2.png"
 
   method moverDerecha() {
-    const x = if (position.x() < game.width()) position.x() + 1 else 0
+    const x = if (position.x() < tablero.finX()) position.x() + 1 else tablero.inicioX()
     
     position = new Position(x = x, y=position.y())
   }
 
   method moverIzquierda() {
-    const x = if (position.x() < 0) game.width() else position.x() - 1
+    const x = if (position.x() < 0) tablero.finX() else position.x() - 1
     
     position = new Position(x = x, y=position.y())
   }
