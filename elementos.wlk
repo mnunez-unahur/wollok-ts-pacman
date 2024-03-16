@@ -2,9 +2,9 @@ import wollok.game.*
 import efectos.Animacion
 
 object tablero {
-  method image() = "tablero.png"
     const position = new Position(x=1, y=1)
 
+	method image() = "tablero.png"
     method position() = position
     method ancho() = 28
     method alto() = 31
