@@ -1,4 +1,4 @@
-import wollok.game.Position
+import wollok.game.*
 
 class Efecto {
 
