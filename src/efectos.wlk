@@ -1,19 +1,23 @@
 import wollok.game.*
 
 class Efecto {
+  var running = false
 
   method reset()
   method next()
 
-  method play(tiempoEntrePaso) {    
+  method play(tiempoEntrePaso) {
     self.pause()
-    game.onTick(tiempoEntrePaso, self.identity() , {
+ 	running = true
+    game.onTick(tiempoEntrePaso, self.identity().toString() , {
       self.next()
     })
   }
 
   method pause() {
-    game.removeTickEvent(self.identity())
+  	if(running) {
+	    game.removeTickEvent(self.identity().toString())	
+  	}
   }
 
   method stop() {
@@ -68,7 +72,7 @@ class Movimiento inherits Efecto {
   const property limiteSuperior
   const property limiteIzquierdo = 0
   const property limiteInferior = 0
-  var property animacion = sinAnimacion
+  var property animacion = null
   var property onCollideDo = null
   // var property beforeMoveDo = null
   // var property afterMoveDo = null
@@ -76,7 +80,7 @@ class Movimiento inherits Efecto {
   method position() = position
 
   override method next() {
-    if(animacion.esAnimable() != null) {
+    if(animacion != null) {
       animacion.next()
     }
     const dX =((limiteDerecho - limiteIzquierdo + position.x() + deltaX) % (limiteDerecho)) + limiteIzquierdo
