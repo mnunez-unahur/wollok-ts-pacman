@@ -18,7 +18,7 @@ object juego {
   method prepararTablero() {
     game.title("Pacman")
     game.height(33)
-    game.width(40)
+    game.width(30)
     game.cellSize(20)
 
     game.boardGround("fondo.png")
@@ -79,7 +79,8 @@ object juego {
 
   method agregarComida() {
     const inicio = tablero.inicioY()+1
-    const filas = tablero.alto() - 1;
+    // const filas = tablero.alto() - 1
+    const filas = 6;
 
     (inicio..filas).forEach({ f => 
       self.agregarComidaEnFila(f)
