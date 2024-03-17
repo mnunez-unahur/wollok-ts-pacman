@@ -1,23 +1,29 @@
 import wollok.game.*
 
 class Efecto {
-  var running = false
+  var paused = true
 
   method reset()
   method next()
 
+  method paused() = paused
+
   method play(tiempoEntrePaso) {
-    self.pause()
- 	running = true
+  	if(!paused) {
+      self.pause()
+    }
+   	paused = false
     game.onTick(tiempoEntrePaso, self.identity().toString() , {
       self.next()
     })
   }
 
   method pause() {
-  	if(running) {
-	    game.removeTickEvent(self.identity().toString())	
+  	if(paused) {
+      throw("el efecto ya se encuentra pausado")
   	}
+    game.removeTickEvent(self.identity().toString())	
+    paused = true
   }
 
   method stop() {
@@ -61,8 +67,6 @@ class Animacion inherits Efecto {
 
 }
 
-object sinAnimacion inherits Animacion {}
-
 class Movimiento inherits Efecto {
   var position
   const posicionInicial = position
@@ -73,22 +77,32 @@ class Movimiento inherits Efecto {
   const property limiteIzquierdo = 0
   const property limiteInferior = 0
   var property animacion = null
-  var property onCollideDo = null
-  // var property beforeMoveDo = null
-  // var property afterMoveDo = null
+  var property beforeMoveDo = {  }
+  var property afterMoveDo = {  }
 
   method position() = position
 
   override method next() {
-    if(animacion != null) {
-      animacion.next()
+    if(beforeMoveDo != null) {
+      beforeMoveDo.apply()
     }
+
+    if(!paused) {
+      if(animacion != null) {
+        animacion.next()
+      }
+      position = self.proximaPosicion()
+      if(afterMoveDo != null) {
+        afterMoveDo.apply()
+      }
+    }
+  }
+
+  // devuelve la próxima posición del movimiento
+  method proximaPosicion() {
     const dX =((limiteDerecho - limiteIzquierdo + position.x() + deltaX) % (limiteDerecho)) + limiteIzquierdo
     const dY = ((limiteSuperior - limiteInferior + position.y() + deltaY) % (limiteSuperior)) + limiteInferior
-    position = new Position(
-      x = dX,
-      y = dY
-      )
+    return new Position( x = dX, y = dY )
   }
 
   method moverDerecha(tiempoEntreSalto) {
