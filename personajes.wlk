@@ -1,22 +1,41 @@
 import wollok.game.*
-import elementos.tablero
+import elementos.*
 import efectos.*
 
 object pacman {
   const animacionDerecha = new Animacion(
-    fotogramas=["pacman/cerrado.png", "pacman/derecha-1.png", "pacman/derecha-2.png", "pacman/derecha-1.png"
-  ])
+    fotogramas=[
+      "pacman/derecha-1.png",
+      "pacman/cerrado.png", 
+      "pacman/derecha-1.png", 
+      "pacman/derecha-2.png" 
+    ]
+  )
 
   const animacionIzquierda = new Animacion(
-    fotogramas=["pacman/cerrado.png", "pacman/izquierda-1.png", "pacman/izquierda-2.png", "pacman/izquierda-1.png"
-  ])
+    fotogramas=[
+      "pacman/izquierda-1.png",
+      "pacman/cerrado.png",
+      "pacman/izquierda-1.png",
+      "pacman/izquierda-2.png"
+    ]
+  )
 
   const animacionArriba = new Animacion(
-    fotogramas=["pacman/cerrado.png", "pacman/arriba-1.png", "pacman/arriba-2.png", "pacman/arriba-1.png"
-  ])
+    fotogramas=[
+      "pacman/arriba-1.png",
+      "pacman/cerrado.png",
+      "pacman/arriba-1.png",
+      "pacman/arriba-2.png"
+    ]
+  )
 
   const animacionAbajo = new Animacion(
-    fotogramas=["pacman/cerrado.png", "pacman/abajo-1.png", "pacman/abajo-2.png", "pacman/abajo-1.png"
+    fotogramas=[
+      "pacman/abajo-1.png",
+      "pacman/cerrado.png",
+      "pacman/abajo-1.png",
+      "pacman/abajo-2.png"
   ])
 
   const movimiento = new Movimiento(
@@ -24,7 +43,14 @@ object pacman {
     limiteDerecho = tablero.finX()+1,
     limiteIzquierdo = tablero.inicioX(),
     limiteSuperior =  tablero.finY()+1,
-    limiteInferior = tablero.inicioY()
+    limiteInferior = tablero.inicioY(),
+    beforeMoveDo = { 
+      const pos = movimiento.proximaPosicion()
+      if(tablero.hayParedEn(pos.x(), pos.y())) {
+        movimiento.pause()
+        animacionActual.reset()
+      }
+    }
   )
 
   var animacionActual = animacionDerecha

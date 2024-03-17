@@ -1,6 +1,6 @@
 prepare: 
 	apt install reflex
 dev:
-	reflex  -r '\.(wlk|wpgm)' -s -- sh -c 'wollok run -g pacman.main'
+	reflex  -r '\.(wlk|wpgm)' -s -- sh -c 'wollok-ts run -g pacman.main'
 run:
-	wollok run -g pacman.main
+	wollok-ts run -g pacman.main

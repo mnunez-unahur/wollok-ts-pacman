@@ -7,6 +7,7 @@ object juego {
 
   method iniciar() {
     self.prepararTablero()
+
     self.configurarTeclas()
 
     game.addVisual(pacman)
@@ -22,14 +23,16 @@ object juego {
     game.cellSize(20)
 
     game.boardGround("fondo.png")
+    tablero.agregarParedes()
     game.addVisual(tablero)
+
   }
 
   method configurarTeclas() {
-    keyboard.up().onPressDo({pacman.moverArriba(100)})
-    keyboard.down().onPressDo({pacman.moverAbajo(100)})
-    keyboard.right().onPressDo({pacman.moverDerecha(100)})
-    keyboard.left().onPressDo({pacman.moverIzquierda(100)})
+    keyboard.up().onPressDo({pacman.moverArriba(140)})
+    keyboard.down().onPressDo({pacman.moverAbajo(140)})
+    keyboard.right().onPressDo({pacman.moverDerecha(140)})
+    keyboard.left().onPressDo({pacman.moverIzquierda(140)})
   }
 
   method agregarPremios() {
@@ -73,21 +76,18 @@ object juego {
     game.addVisual(premio)
     premios.add(premio)
 
-    self.agregarComida()
+    // self.agregarComida()
 
   }
 
   method agregarComida() {
     const inicio = tablero.inicioY()+1
-    // const filas = tablero.alto() - 1
-    const filas = 6;
+    const filas = tablero.alto() - 1
 
     (inicio..filas).forEach({ f => 
       self.agregarComidaEnFila(f)
 
     })
-
-
   }
 
   method agregarComidaEnFila(fila) {
@@ -95,9 +95,12 @@ object juego {
     const cols = tablero.ancho() - 1;
 
     (inicio..cols).forEach({c => 
-      const comida = new Comida( position = new Position(x = c, y = fila))
-      game.addVisual(comida)
-      premios.add(comida)
+      if(!tablero.hayParedEn(c, fila)) {
+        const comida = new Comida( position = new Position(x = c, y = fila))
+        game.addVisual(comida)
+        premios.add(comida)
+      }
+
     })
   }
 
