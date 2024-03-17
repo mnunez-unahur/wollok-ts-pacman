@@ -9,9 +9,9 @@ object juego {
     self.prepararTablero()
 
     self.configurarTeclas()
-
-    game.addVisual(pacman)
     self.agregarPremios()
+    self.configurarPacman()
+    //  self.agregarComida()
 
     game.start()
   }
@@ -76,8 +76,13 @@ object juego {
     game.addVisual(premio)
     premios.add(premio)
 
-    // self.agregarComida()
-
+  }
+  
+  method configurarPacman() {
+  	    game.addVisual(pacman)
+  		game.whenCollideDo(pacman, {el => 
+  			game.removeVisual(el)
+  		})
   }
 
   method agregarComida() {
