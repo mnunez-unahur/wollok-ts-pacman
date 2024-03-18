@@ -10,14 +10,14 @@ class ElementoMultiCelda {
   }
 
   //retorna verdadero si el Elemento está en la celda especificada
-  method estaEnCelda(x, y) {
-    const relX = x - position.x()
-    const relY = y - position.y()
+  method estaEnPosicion(pos) {
+    const relX = pos.x() - position.x()
+    const relY = pos.y() - position.y()
 
     return 
       relY >= 0 && relY < celdas.size() && 
       relX >= 0 && relX < celdas.get(0).size()  && 
-      celdas.get(y - position.y()).get(x - position.x()) != 0
+      celdas.get(relY).get(relX) != 0
   }
 }
 
@@ -29,6 +29,7 @@ object tablero inherits ElementoMultiCelda( position = new Position(x=1, y=1)) {
   method inicioY() = position.y()
   method finX() = position.x() + self.ancho() - 1
   method finY() = position.y() + self.alto() - 1
+  method centro() = new Position(x=position.x() + 13, y = position.y() + 13)
 
   method initialize() {
     self.definirForma([

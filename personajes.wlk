@@ -39,15 +39,14 @@ object pacman {
   ])
 
   const movimiento = new Movimiento(
-    position = new Position(x = tablero.inicioX() + 1, y = tablero.inicioY() + 1),
+    position = tablero.centro(),
     limiteDerecho = tablero.finX()+1,
     limiteIzquierdo = tablero.inicioX(),
     limiteSuperior =  tablero.finY()+1,
     limiteInferior = tablero.inicioY(),
     beforeMoveDo = { 
       const pos = movimiento.proximaPosicion()
-      if(areaFantasmas.estaEnCelda(pos.x(), pos.y()) || 
-        tablero.estaEnCelda(pos.x(), pos.y())) {
+      if(self.hayObstaculosEn(pos)) {
         movimiento.pause()
         animacionActual.reset()
       }
@@ -59,6 +58,8 @@ object pacman {
   method position() = movimiento.position()
 
   method image() = animacionActual.image()
+
+  method hayObstaculosEn(pos) =   areaFantasmas.estaEnPosicion(pos) || tablero.estaEnPosicion(pos)
 
   method moverDerecha(tiempoEntrePaso) {
     animacionActual = animacionDerecha

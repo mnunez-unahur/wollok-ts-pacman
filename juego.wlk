@@ -23,6 +23,7 @@ object juego {
 
     game.boardGround("fondo.png")
     game.addVisual(tablero)
+    // self.agregarComida()    
 
   }
 
@@ -99,12 +100,12 @@ object juego {
     const cols = tablero.ancho() - 1;
 
     (inicio..cols).forEach({c => 
-      if(!tablero.estaEnCelda(c, fila)) {
+      const pos = new Position(x = c, y = fila)
+      if(!tablero.estaEnPosicion(pos) && !areaFantasmas.estaEnPosicion(pos)) {
         const comida = new Comida( position = new Position(x = c, y = fila))
         game.addVisual(comida)
         premios.add(comida)
       }
-
     })
   }
 
