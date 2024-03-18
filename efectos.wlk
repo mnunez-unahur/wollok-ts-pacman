@@ -63,8 +63,6 @@ class Animacion inherits Efecto {
   override method reset() {
     fotogramaActual = 0
   }
-
-
 }
 
 class Movimiento inherits Efecto {

@@ -46,7 +46,8 @@ object pacman {
     limiteInferior = tablero.inicioY(),
     beforeMoveDo = { 
       const pos = movimiento.proximaPosicion()
-      if(tablero.hayParedEn(pos.x(), pos.y())) {
+      if(areaFantasmas.estaEnCelda(pos.x(), pos.y()) || 
+        tablero.estaEnCelda(pos.x(), pos.y())) {
         movimiento.pause()
         animacionActual.reset()
       }

@@ -11,7 +11,6 @@ object juego {
     self.configurarTeclas()
     self.agregarPremios()
     self.configurarPacman()
-    //  self.agregarComida()
 
     game.start()
   }
@@ -23,7 +22,6 @@ object juego {
     game.cellSize(20)
 
     game.boardGround("fondo.png")
-    tablero.agregarParedes()
     game.addVisual(tablero)
 
   }
@@ -37,21 +35,22 @@ object juego {
 
   method agregarPremios() {
     var premio = new SuperPoder(
-                            position = new Position(
-                              x = tablero.inicioX() + 1,
-                              y = tablero.inicioY() + 8
-                            )
+      position = new Position(
+        x = tablero.inicioX() + 1,
+        y = tablero.inicioY() + 8
       )
+    )
     premio.animar()
     game.addVisual(premio)
     premios.add(premio)
 
     premio = new SuperPoder(
-                        position = new Position(
-                          x = tablero.finX() - 1,
-                          y = tablero.inicioY() + 8
-                        )
+      position = new Position(
+        x = tablero.finX() - 1,
+        y = tablero.inicioY() + 8
       )
+    )
+
     premio.animar()
     game.addVisual(premio)
     premios.add(premio)
@@ -100,7 +99,7 @@ object juego {
     const cols = tablero.ancho() - 1;
 
     (inicio..cols).forEach({c => 
-      if(!tablero.hayParedEn(c, fila)) {
+      if(!tablero.estaEnCelda(c, fila)) {
         const comida = new Comida( position = new Position(x = c, y = fila))
         game.addVisual(comida)
         premios.add(comida)
