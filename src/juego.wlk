@@ -1,5 +1,5 @@
 import wollok.game.*
-import personajes.pacman
+import personajes.*
 import elementos.*
 
 object juego {
@@ -10,8 +10,8 @@ object juego {
 
     self.configurarTeclas()
     self.agregarPremios()
-    self.configurarPacman()
-      self.agregarComida()
+    self.agregarPacman()
+    self.agregarFantasmas()
 
     game.start()
   }
@@ -23,8 +23,8 @@ object juego {
     game.cellSize(20)
 
     game.boardGround("fondo.png")
-    tablero.agregarParedes()
     game.addVisual(tablero)
+    // self.agregarComida()    
 
   }
 
@@ -37,21 +37,22 @@ object juego {
 
   method agregarPremios() {
     var premio = new SuperPoder(
-                            position = new Position(
-                              x = tablero.inicioX() + 1,
-                              y = tablero.inicioY() + 8
-                            )
+      position = new Position(
+        x = tablero.inicioX() + 1,
+        y = tablero.inicioY() + 8
       )
+    )
     premio.animar()
     game.addVisual(premio)
     premios.add(premio)
 
     premio = new SuperPoder(
-                        position = new Position(
-                          x = tablero.finX() - 1,
-                          y = tablero.inicioY() + 8
-                        )
+      position = new Position(
+        x = tablero.finX() - 1,
+        y = tablero.inicioY() + 8
       )
+    )
+
     premio.animar()
     game.addVisual(premio)
     premios.add(premio)
@@ -78,11 +79,23 @@ object juego {
 
   }
   
-  method configurarPacman() {
-  	    game.addVisual(pacman)
-  		game.whenCollideDo(pacman, {el => 
-  			game.removeVisual(el)
-  		})
+  method agregarPacman() {
+    game.addVisual(pacman)
+    // game.whenCollideDo(pacman, {el => 
+    //  game.removeVisual(el)
+    // })
+  }
+
+  method agregarFantasmas() {
+     game.addVisual(fantasmaLila)
+     game.addVisual(fantasmaCeleste)
+     game.addVisual(fantasmaVerde)
+     game.addVisual(fantasmaRojo)
+     fantasmaLila.moverDerecha(320)
+     fantasmaCeleste.moverDerecha(300)
+     fantasmaVerde.moverDerecha(280)
+     fantasmaRojo.moverDerecha(260)
+
   }
 
   method agregarComida() {
@@ -100,12 +113,12 @@ object juego {
     const cols = tablero.ancho() - 1;
 
     (inicio..cols).forEach({c => 
-      if(!tablero.hayParedEn(c, fila)) {
+      const pos = new Position(x = c, y = fila)
+      if(!tablero.estaEnPosicion(pos) && !areaFantasmas.estaEnPosicion(pos)) {
         const comida = new Comida( position = new Position(x = c, y = fila))
         game.addVisual(comida)
         premios.add(comida)
       }
-
     })
   }
 

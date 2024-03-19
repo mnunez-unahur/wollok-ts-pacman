@@ -30,7 +30,6 @@ class Efecto {
     self.pause()
     self.reset()
   }
-
 }
 
 class Animacion inherits Efecto {
@@ -63,8 +62,6 @@ class Animacion inherits Efecto {
   override method reset() {
     fotogramaActual = 0
   }
-
-
 }
 
 class Movimiento inherits Efecto {
@@ -81,6 +78,17 @@ class Movimiento inherits Efecto {
   var property afterMoveDo = {  }
 
   method position() = position
+  method moviendoArriba() = deltaY > 0
+  method moviendoAbajo() = deltaY < 0
+  method moviendoDerecha() = deltaX > 0
+  method moviendoIzquierda() = deltaX < 0
+
+  method direccionActual() {
+    return  if(self.moviendoArriba()) "arriba" else
+            if(self.moviendoAbajo()) "abajo" else
+            if(self.moviendoDerecha()) "derecha" else
+            if(self.moviendoIzquierda()) "izquierda" else ""
+  }
 
   override method next() {
     if(beforeMoveDo != null) {
