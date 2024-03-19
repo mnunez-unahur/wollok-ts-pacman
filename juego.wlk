@@ -91,10 +91,10 @@ object juego {
      game.addVisual(fantasmaCeleste)
      game.addVisual(fantasmaVerde)
      game.addVisual(fantasmaRojo)
-     fantasmaLila.moverDerecha(500)
-     fantasmaCeleste.moverDerecha(400)
-     fantasmaVerde.moverDerecha(300)
-     fantasmaRojo.moverDerecha(250)
+     fantasmaLila.moverDerecha(320)
+     fantasmaCeleste.moverDerecha(300)
+     fantasmaVerde.moverDerecha(280)
+     fantasmaRojo.moverDerecha(260)
 
   }
 

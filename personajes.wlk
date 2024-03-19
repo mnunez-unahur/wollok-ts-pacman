@@ -145,22 +145,34 @@ class FantasmaAbstracto inherits PersonajeAbstracto{
 
   override method moverDerecha(tiempoEntrePaso) {
     velocidadActual = tiempoEntrePaso
-    super(tiempoEntrePaso)
+    animacionActual = self.animacionDerecha()
+    animacionActual.play(300)
+    movimiento.animacion(null)
+    movimiento.moverDerecha(tiempoEntrePaso)
   }
 
   override method moverIzquierda(tiempoEntrePaso) {
     velocidadActual = tiempoEntrePaso
-    super(tiempoEntrePaso)
+    animacionActual = self.animacionIzquierda()
+    animacionActual.play(300)
+    movimiento.animacion(null)
+    movimiento.moverIzquierda(tiempoEntrePaso)
   }
 
   override method moverArriba(tiempoEntrePaso) {
     velocidadActual = tiempoEntrePaso
-    super(tiempoEntrePaso)
+    animacionActual = self.animacionArriba()
+    animacionActual.play(300)
+    movimiento.animacion(null)
+    movimiento.moverArriba(tiempoEntrePaso)
   }
 
   override method moverAbajo(tiempoEntrePaso) {
     velocidadActual = tiempoEntrePaso
-    super(tiempoEntrePaso)
+    animacionActual = self.animacionAbajo()
+    animacionActual.play(300)
+    movimiento.animacion(null)
+    movimiento.moverAbajo(tiempoEntrePaso)
   }
 
 
@@ -170,7 +182,7 @@ class FantasmaLila inherits FantasmaAbstracto {
   const animacionDerecha = new Animacion(
     fotogramas=[
       "fantasmas/vi/derecha-1.png",
-      "fantasmas/vi/derecha-2.png", 
+      // "fantasmas/vi/derecha-2.png", 
       "fantasmas/vi/derecha-3.png"
     ]
   )
@@ -178,7 +190,7 @@ class FantasmaLila inherits FantasmaAbstracto {
   const animacionIzquierda = new Animacion(
     fotogramas=[
       "fantasmas/vi/izquierda-1.png",
-      "fantasmas/vi/izquierda-2.png",
+      // "fantasmas/vi/izquierda-2.png",
       "fantasmas/vi/izquierda-3.png"
     ]
   )
@@ -186,7 +198,7 @@ class FantasmaLila inherits FantasmaAbstracto {
   const animacionArriba = new Animacion(
     fotogramas=[
       "fantasmas/vi/arriba-1.png",
-      "fantasmas/vi/arriba-2.png",
+      // "fantasmas/vi/arriba-2.png",
       "fantasmas/vi/arriba-3.png"
     ]
   )
@@ -194,7 +206,7 @@ class FantasmaLila inherits FantasmaAbstracto {
   const animacionAbajo = new Animacion(
     fotogramas=[
       "fantasmas/vi/abajo-1.png",
-      "fantasmas/vi/abajo-2.png",
+      // "fantasmas/vi/abajo-2.png",
       "fantasmas/vi/abajo-3.png"
   ])
 
