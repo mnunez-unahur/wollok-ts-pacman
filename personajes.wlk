@@ -182,32 +182,28 @@ class FantasmaLila inherits FantasmaAbstracto {
   const animacionDerecha = new Animacion(
     fotogramas=[
       "fantasmas/vi/derecha-1.png",
-      // "fantasmas/vi/derecha-2.png", 
-      "fantasmas/vi/derecha-3.png"
+      "fantasmas/vi/derecha-2.png"
     ]
   )
 
   const animacionIzquierda = new Animacion(
     fotogramas=[
       "fantasmas/vi/izquierda-1.png",
-      // "fantasmas/vi/izquierda-2.png",
-      "fantasmas/vi/izquierda-3.png"
+      "fantasmas/vi/izquierda-2.png"
     ]
   )
 
   const animacionArriba = new Animacion(
     fotogramas=[
       "fantasmas/vi/arriba-1.png",
-      // "fantasmas/vi/arriba-2.png",
-      "fantasmas/vi/arriba-3.png"
+      "fantasmas/vi/arriba-2.png"
     ]
   )
 
   const animacionAbajo = new Animacion(
     fotogramas=[
       "fantasmas/vi/abajo-1.png",
-      // "fantasmas/vi/abajo-2.png",
-      "fantasmas/vi/abajo-3.png"
+      "fantasmas/vi/abajo-2.png"
   ])
 
 
