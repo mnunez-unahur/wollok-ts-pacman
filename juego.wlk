@@ -1,5 +1,5 @@
 import wollok.game.*
-import personajes.pacman
+import personajes.*
 import elementos.*
 
 object juego {
@@ -10,7 +10,8 @@ object juego {
 
     self.configurarTeclas()
     self.agregarPremios()
-    self.configurarPacman()
+    self.agregarPacman()
+    self.agregarFantasmas()
 
     game.start()
   }
@@ -78,11 +79,23 @@ object juego {
 
   }
   
-  method configurarPacman() {
-  	    game.addVisual(pacman)
-  		game.whenCollideDo(pacman, {el => 
-  			game.removeVisual(el)
-  		})
+  method agregarPacman() {
+    game.addVisual(pacman)
+    // game.whenCollideDo(pacman, {el => 
+    //  game.removeVisual(el)
+    // })
+  }
+
+  method agregarFantasmas() {
+     game.addVisual(fantasmaLila)
+     game.addVisual(fantasmaCeleste)
+     game.addVisual(fantasmaVerde)
+     game.addVisual(fantasmaRojo)
+     fantasmaLila.moverDerecha(500)
+     fantasmaCeleste.moverDerecha(400)
+     fantasmaVerde.moverDerecha(300)
+     fantasmaRojo.moverDerecha(250)
+
   }
 
   method agregarComida() {
