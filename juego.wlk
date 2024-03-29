@@ -24,7 +24,7 @@ object juego {
 
     game.boardGround("fondo.png")
     game.addVisual(tablero)
-    // self.agregarComida()    
+    self.agregarComida()    
 
   }
 
@@ -81,9 +81,9 @@ object juego {
   
   method agregarPacman() {
     game.addVisual(pacman)
-    // game.whenCollideDo(pacman, {el => 
-    //  game.removeVisual(el)
-    // })
+    game.whenCollideDo(pacman, {el => 
+      game.removeVisual(el)
+    })
   }
 
   method agregarFantasmas() {
